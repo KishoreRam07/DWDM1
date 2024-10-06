@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Late Delivery Predictor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex justify-center items-center min-h-screen">
+
+    <div class="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">Late Delivery Predictor</h1>
+
+        <form action="/predict" method="POST" class="space-y-6">
+            <div>
+                <label for="feature1" class="block text-gray-700 text-sm font-bold mb-2">Feature 1 (Delivery Distance):</label>
+                <input type="number" id="feature1" name="feature1" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            </div>
+
+            <div>
+                <label for="feature2" class="block text-gray-700 text-sm font-bold mb-2">Feature 2 (Delivery Time):</label>
+                <input type="number" id="feature2" name="feature2" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            </div>
+
+            <div>
+                <label for="feature3" class="block text-gray-700 text-sm font-bold mb-2">Feature 3 (Delivery Urgency):</label>
+                <input type="number" id="feature3" name="feature3" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            </div>
+
+            <div>
+                <label for="feature4" class="block text-gray-700 text-sm font-bold mb-2">Feature 4 (Delivery Location):</label>
+                <input type="number" id="feature4" name="feature4" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            </div>
+
+            <button type="submit" class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                Predict
+            </button>
+        </form>
+
+        {% if prediction is not none %}
+        <div class="mt-8 text-center">
+            <h2 class="text-xl font-bold text-gray-800">Prediction: {{ prediction }}</h2>
+            <a href="/dashboard" class="text-blue-500 font-semibold hover:underline">View Dashboard</a>
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
