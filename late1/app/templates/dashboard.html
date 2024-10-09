@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #413949 100%);
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card-title {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .highlight {
+            background: linear-gradient(to right, #f12711, #f5af19);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tile {
+            background: linear-gradient(145deg, #ffffff, #e6e6e6);
+            box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .tile:hover {
+            transform: translateY(-5px);
+            box-shadow: 6px 6px 16px #b3b3b3, -6px -6px 16px #ffffff;
+        }
+
+        .visual-card {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+
+        .visual-card h2 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .feature-chart {
+            height: 300px;
+            background: #f9f9f9;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-bar {
+            height: 20px;
+            border-radius: 10px;
+            background: #e0e0e0;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar-inner {
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #f7971e, #ffd200);
+            animation: progressAnimation 2s ease-in-out forwards;
+        }
+
+        @keyframes progressAnimation {
+            from {
+                width: 0%;
+            }
+            to {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-500 to-purple-700 min-h-screen flex items-center justify-center">
+    <div class="container mx-auto px-4">
+        <div class="card max-w-2xl mx-auto">
+            <h1 class="text-4xl font-extrabold text-center card-title">Prediction Result</h1>
+
+            <!-- Prediction Status -->
+            <div class="tile text-center">
+                <p class="text-2xl font-semibold">
+                    Prediction:
+                    <span class="highlight">
+                        {{ 'On Time' if prediction == 1 else 'Late' }}
+                    </span>
+                </p>
+            </div>
+
+            <!-- Model Accuracy -->
+            <div class="tile text-center">
+                <p class="text-2xl font-semibold">
+                    Model Accuracy:
+                    <span class="highlight">
+                        {{ accuracy }}%
+                    </span>
+                </p>
+                <div class="progress-bar">
+                    <div class="progress-bar-inner" style="width: {{ accuracy }}%;"></div>
+                </div>
+            </div>
+
+            <!-- SHAP Feature Impact -->
+            <div class="visual-card">
+                <h2>SHAP Feature Impact</h2>
+                <div class="feature-chart">
+        <img src="data:image/png;base64,{{ random_graph_url }}" alt="Random Feature Importance Graph">
+                </div>
+            </div>
+
+            <!-- Prediction Breakdown -->
+            <div class="visual-card mt-6">
+                <h2>Prediction Breakdown</h2>
+                <ul class="list-disc list-inside mt-4">
+                    {% for reason in reasons %}
+                        <li class="text-gray-600">Feature: <span class="font-bold">{{ feature_names[loop.index0] }}</span> - Importance: <span class="font-bold">{{ reason }}</span></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- Button to Go Back -->
+            <div class="mt-8 text-center">
+                <a href="/" class="inline-block bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-300 transition ease-in-out duration-300">
+                    Make Another Prediction
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+
+You said:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Late Delivery Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f4f8;
+        }
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+        }
+        input, button {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        input:hover, input:focus {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+        .bg-custom {
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+        }
+        h1 {
+            background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto mt-10">
+        <h1 class="text-4xl font-extrabold text-center">Late Delivery Prediction</h1>
+        <form action="/" method="post" class="form-container mx-auto max-w-lg mt-8">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="days_shipping_real">Days for Shipping (Real):</label>
+                <input type="number" step="any" name="days_shipping_real" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline hover:shadow-lg">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="days_shipment_scheduled">Days for Shipment (Scheduled):</label>
+                <input type="number" step="any" name="days_shipment_scheduled" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline hover:shadow-lg">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="benefit_per_order">Benefit per Order:</label>
+                <input type="number" step="any" name="benefit_per_order" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline hover:shadow-lg">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="sales_per_customer">Sales per Customer:</label>
+                <input type="number" step="any" name="sales_per_customer" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline hover:shadow-lg">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="category_id">Category Id:</label>
+                <input type="number" name="category_id" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline hover:shadow-lg">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="customer_zipcode">Customer Zipcode:</label>
+                <input type="number" name="customer_zipcode" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline hover:shadow-lg">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="order_item_quantity">Order Item Quantity:</label>
+                <input type="number" name="order_item_quantity" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline hover:shadow-lg">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="order_item_product_price">Order Item Product Price:</label>
+                <input type="number" step="any" name="order_item_product_price" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline hover:shadow-lg">
+            </div>
+            <div class="flex items-center justify-between">
+                <button type="submit" class="bg-custom text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline hover:shadow-lg">
+                    Predict
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+</html> 
